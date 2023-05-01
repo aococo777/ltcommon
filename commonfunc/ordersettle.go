@@ -2,7 +2,7 @@ package commonfunc
 
 import (
 	"encoding/json"
-	"github.com/aococo777ltcommon/commonstruct"
+	"github.com/aococo777/ltcommon/commonstruct"
 
 	"github.com/astaxie/beego"
 )

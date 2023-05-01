@@ -1,7 +1,7 @@
 package commonclass
 
 import (
-	"github.com/aococo777ltcommon/commonstruct"
+	"github.com/aococo777/ltcommon/commonstruct"
 	"sync"
 
 	"github.com/jinzhu/gorm"

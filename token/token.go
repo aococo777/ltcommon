@@ -4,9 +4,9 @@ import (
 	"crypto/md5"
 	"encoding/hex"
 	"fmt"
-	"github.com/aococo777ltcommon/commonfunc"
+	"github.com/aococo777/ltcommon/commonfunc"
 
-	"github.com/aococo777tt.com/component/uuid"
+	"github.com/aococo777/tt.com/component/uuid"
 )
 
 type Token struct {
