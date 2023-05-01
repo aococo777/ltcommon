@@ -107,9 +107,8 @@ const (
 	WY_tmp_user_fengkongmark_log = "wy_tmp_user_fengkongmark_log" // 用户被风控标记日志
 	WY_tmp_user_gentouplan       = "wy_tmp_user_gentouplan"       // 跟投设置表
 	WY_tmp_log_huoliang          = "wy_tmp_log_huoliang"          // 货量记录
-
-	WY_DaohangUrl   = "wy_daohang_url"  // 导航key=>url
-	Daohang_key_url = "daohang_key_url" // 导航key=>url
+	WY_DaohangUrl                = "wy_daohang_url"               // 导航key=>url
+	Daohang_key_url              = "daohang_key_url"              // 导航key=>url
 )
 
 // 彩种信息
