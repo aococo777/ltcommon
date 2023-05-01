@@ -406,6 +406,7 @@ type OrderS struct {
 	ItemID          int64   // 下单结果ID
 	Iteminfo        string  // 下注项信息
 	Official        int64   // 官方玩法标志
+	IsJiashi        int64   // 加时订单
 	Amount          float64 // 投注金额
 	IsZidongbuhuo   int64   // 自动补货标识
 	IsShoudongbuhuo int64   // 手动补货标识
