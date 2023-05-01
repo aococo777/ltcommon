@@ -2,7 +2,7 @@ package commonclass
 
 import (
 	"fmt"
-	"ltback/src/ltcommon/commonstruct"
+	"github.com/aococo777ltcommon/commonstruct"
 	"strconv"
 	"strings"
 	"sync"

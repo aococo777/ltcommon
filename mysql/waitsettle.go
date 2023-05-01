@@ -3,8 +3,8 @@ package wymysql
 import (
 	"errors"
 	"fmt"
-	"ltback/src/ltcommon/commonfunc"
-	"ltback/src/ltcommon/commonstruct"
+	"github.com/aococo777ltcommon/commonfunc"
+	"github.com/aococo777ltcommon/commonstruct"
 	"math"
 	"strconv"
 	"time"

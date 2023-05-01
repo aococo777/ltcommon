@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"ltback/src/ltcommon/commonfunc"
-	"ltback/src/ltcommon/commonstruct"
+	"github.com/aococo777ltcommon/commonfunc"
+	"github.com/aococo777ltcommon/commonstruct"
 	"sync"
 
 	"github.com/astaxie/beego"

@@ -35,7 +35,7 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
-	"ltback/src/ltcommon/commonstruct"
+	"github.com/aococo777ltcommon/commonstruct"
 	"math"
 	"net/http"
 	"os"

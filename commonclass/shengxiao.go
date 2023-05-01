@@ -1,8 +1,8 @@
 package commonclass
 
 import (
-	"ltback/src/ltcommon/commonfunc"
-	"ltback/src/ltcommon/commonstruct"
+	"github.com/aococo777ltcommon/commonfunc"
+	"github.com/aococo777ltcommon/commonstruct"
 	"strconv"
 	"strings"
 	"sync"

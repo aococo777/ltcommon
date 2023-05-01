@@ -2,7 +2,7 @@ package wymysql
 
 import (
 	"fmt"
-	"ltback/src/ltcommon/commonstruct"
+	"github.com/aococo777ltcommon/commonstruct"
 
 	"github.com/astaxie/beego"
 	_ "github.com/go-sql-driver/mysql"

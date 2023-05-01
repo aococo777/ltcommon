@@ -3,9 +3,9 @@ package txmysql
 import (
 	"fmt"
 	"log"
-	"ltback/src/ltcommon/commonfunc"
-	"ltback/src/ltcommon/commonstruct"
-	"ltback/src/ltcommon/tongxundb/tablestruct"
+	"github.com/aococo777ltcommon/commonfunc"
+	"github.com/aococo777ltcommon/commonstruct"
+	"github.com/aococo777ltcommon/tongxundb/tablestruct"
 	"os"
 	"runtime"
 	"strconv"

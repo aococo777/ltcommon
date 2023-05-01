@@ -2,7 +2,7 @@ package commonclass
 
 import (
 	"errors"
-	"ltback/src/ltcommon/commonstruct"
+	"github.com/aococo777ltcommon/commonstruct"
 	"strings"
 	"sync"
 	"time"

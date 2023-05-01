@@ -2,7 +2,7 @@ package wymysql
 
 import (
 	"fmt"
-	"ltback/src/ltcommon/commonstruct"
+	"github.com/aococo777ltcommon/commonstruct"
 	"math"
 	"strconv"
 
