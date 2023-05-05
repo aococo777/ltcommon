@@ -106,6 +106,8 @@ const (
 	WY_tmp_company_fengkonglog   = "wy_tmp_company_fengkonglog"   // 公司风控日志表
 	WY_tmp_user_fengkongmark_log = "wy_tmp_user_fengkongmark_log" // 用户被风控标记日志
 	WY_tmp_user_gentouplan       = "wy_tmp_user_gentouplan"       // 跟投设置表
+	WY_tmp_lastinfo              = "wy_tmp_lastinfo"              // 上次timer数据
+	WY_tmp_log_buhuo             = "wy_tmp_log_buhuo"             // 补货记录
 	WY_tmp_log_huoliang          = "wy_tmp_log_huoliang"          // 货量记录
 	WY_DaohangUrl                = "wy_daohang_url"               // 导航key=>url
 	Daohang_key_url              = "daohang_key_url"              // 导航key=>url
@@ -1726,6 +1728,33 @@ type FengkongmarkLog struct {
 	MarkDate   int64  `json:"markdate"`   // 风控日期
 	SrcUuid    int64  `json:"srcuuid"`    //
 	SrcAccount string `json:"srcaccount"` //
+}
+
+// Timer 上次刷新时的数据
+type LastTimerinfo struct {
+	GroupName    string `json:"GroupName"`    // 分组名
+	BuhuoOrderid int64  `json:"buhuoorderid"` // 用户ID
+}
+
+// 盘口修改日志
+type BuhuoLog struct {
+	ID              int64 `json:"buhuoorderid"`
+	ParentID        int64
+	OrderTime       int64
+	BeginTime       int64
+	Uuid            int64 // 补货代理ID
+	Roomid          int64
+	Pan             string
+	Itemid          int64
+	BuhuoTime       int64
+	Transferamount  float64 // 补货额度
+	Yishouhuoliang  float64 // 目前DB已收
+	Basehuoliang    float64 // 本单基础占成
+	Betinfo         string
+	OrderType       int64
+	BInJiashiPeriod int64
+	Buhuoflag       int64  // 下单标识
+	Expinfo         string // 下单标识
 }
 
 // 货量变动日志
