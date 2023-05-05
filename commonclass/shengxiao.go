@@ -1,12 +1,13 @@
 package commonclass
 
 import (
-	"github.com/aococo777/ltcommon/commonfunc"
-	"github.com/aococo777/ltcommon/commonstruct"
 	"strconv"
 	"strings"
 	"sync"
 	"time"
+
+	"github.com/aococo777/ltcommon/commonfunc"
+	"github.com/aococo777/ltcommon/commonstruct"
 
 	"github.com/astaxie/beego"
 	"github.com/jinzhu/gorm"
@@ -108,4 +109,54 @@ func (this *ShengxiaoManager) GetShengxiaoS() map[int64]string {
 
 	ret := this.Shengxiao_Ball
 	return ret
+}
+
+func (this *ShengxiaoManager) UpdateShengxiao() {
+	today := commonfunc.GetBjTime20060102(time.Now())
+	var infos commonstruct.CShengxiaoball
+	if err := this.mysql.Table(commonstruct.WY_gm_config_shengxiaoball).
+		Where("date <= ?", today).Order("date desc").Limit(1).
+		Find(&infos).Error; err != nil {
+		beego.Error("get WY_gm_config_shengxiao err", today)
+		return
+	}
+
+	i_today, _ := strconv.ParseInt(today, 10, 64)
+	if infos.Date == i_today { // 切换生肖日
+		beego.Error("切换生肖日", infos.Date, infos.Nianxiao)
+		if err := this.NianxiaoToNormal(); err != nil {
+			beego.Error("NianxiaoToNormal err", err)
+		}
+		if err := this.NewNianxiao(infos.Nianxiao); err != nil {
+			beego.Error("NewNianxiao err", infos.Nianxiao, err)
+		}
+	} else {
+		beego.Error("非生肖日", infos.Date, i_today)
+	}
+}
+
+func (this *ShengxiaoManager) NianxiaoToNormal() error {
+	updateValues1 := map[string]interface{}{
+		"game_xiaolei": "普肖",
+	}
+
+	if err := this.mysql.Table(commonstruct.WY_gm_config_item).Where("game_xiaolei in ('年肖','普肖')").
+		Update(updateValues1).Error; err != nil {
+		beego.Error("NianxiaoToNormal err ", err)
+		return err
+	}
+	return nil
+}
+
+func (this *ShengxiaoManager) NewNianxiao(nianxiao string) error {
+	updateValues1 := map[string]interface{}{
+		"game_xiaolei": "年肖",
+	}
+
+	if err := this.mysql.Table(commonstruct.WY_gm_config_item).Where("game_item = ? and game_xiaolei in ('年肖','普肖')", nianxiao).
+		Update(updateValues1).Error; err != nil {
+		beego.Error("NewNianxiao err ", err)
+		return err
+	}
+	return nil
 }

@@ -35,7 +35,6 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
-	"github.com/aococo777/ltcommon/commonstruct"
 	"math"
 	"net/http"
 	"os"
@@ -44,6 +43,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/aococo777/ltcommon/commonstruct"
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/context"
@@ -380,4 +381,203 @@ func StrToIntarr(strarg string, sep string) []int64 {
 		retarr = append(retarr, inttmp)
 	}
 	return retarr
+}
+
+// 连肖连尾 需要判断是否下了低赔率的项， 如果有就要切换到低赔率的item下
+func ChangeBetitem(betinfo commonstruct.Betinfo, nianxiao string) (commonstruct.Betinfo, error) {
+	var newbet commonstruct.Betinfo
+	switch betinfo.Id {
+	case 777: // 二连肖普肖项
+		if betinfo.Num == "" {
+			return newbet, errors.New(fmt.Sprintf("年肖玩法的Num不能为空"))
+		} else {
+			strlist := strings.Split(betinfo.Num, ",")
+			for _, itemstr := range strlist {
+				if itemstr == nianxiao { // 下注号码有年肖
+					newbet.Id = 5447
+					newbet.Money = betinfo.Money
+					newbet.Num = betinfo.Num
+					newbet.Expinfo = betinfo.Expinfo
+					return newbet, nil
+				}
+			}
+		}
+	case 778: // 三连肖普肖项
+		if betinfo.Num == "" {
+			return newbet, errors.New(fmt.Sprintf("年肖玩法的Num不能为空"))
+		} else {
+			strlist := strings.Split(betinfo.Num, ",")
+			for _, itemstr := range strlist {
+				if itemstr == nianxiao { // 下注号码有年肖
+					newbet.Id = 5448
+					newbet.Money = betinfo.Money
+					newbet.Num = betinfo.Num
+					newbet.Expinfo = betinfo.Expinfo
+					return newbet, nil
+				}
+			}
+		}
+	case 779: // 四连肖普肖项
+		if betinfo.Num == "" {
+			return newbet, errors.New(fmt.Sprintf("年肖玩法的Num不能为空"))
+		} else {
+			strlist := strings.Split(betinfo.Num, ",")
+			for _, itemstr := range strlist {
+				if itemstr == nianxiao { // 下注号码有年肖
+					newbet.Id = 5449
+					newbet.Money = betinfo.Money
+					newbet.Num = betinfo.Num
+					newbet.Expinfo = betinfo.Expinfo
+					return newbet, nil
+				}
+			}
+		}
+	case 780: // 五连肖普肖项
+		if betinfo.Num == "" {
+			return newbet, errors.New(fmt.Sprintf("年肖玩法的Num不能为空"))
+		} else {
+			strlist := strings.Split(betinfo.Num, ",")
+			for _, itemstr := range strlist {
+				if itemstr == nianxiao { // 下注号码有年肖
+					newbet.Id = 5450
+					newbet.Money = betinfo.Money
+					newbet.Num = betinfo.Num
+					newbet.Expinfo = betinfo.Expinfo
+					return newbet, nil
+				}
+			}
+		}
+	case 781: // 二肖不中普肖项
+		if betinfo.Num == "" {
+			return newbet, errors.New(fmt.Sprintf("年肖玩法的Num不能为空"))
+		} else {
+			strlist := strings.Split(betinfo.Num, ",")
+			for _, itemstr := range strlist {
+				if itemstr == nianxiao { // 下注号码有年肖
+					newbet.Id = 5451
+					newbet.Money = betinfo.Money
+					newbet.Num = betinfo.Num
+					newbet.Expinfo = betinfo.Expinfo
+					return newbet, nil
+				}
+			}
+		}
+	case 782: // 三肖不中普肖项
+		if betinfo.Num == "" {
+			return newbet, errors.New(fmt.Sprintf("年肖玩法的Num不能为空"))
+		} else {
+			strlist := strings.Split(betinfo.Num, ",")
+			for _, itemstr := range strlist {
+				if itemstr == nianxiao { // 下注号码有年肖
+					newbet.Id = 5452
+					newbet.Money = betinfo.Money
+					newbet.Num = betinfo.Num
+					newbet.Expinfo = betinfo.Expinfo
+					return newbet, nil
+				}
+			}
+		}
+	case 783: // 四肖不中普肖项
+		if betinfo.Num == "" {
+			return newbet, errors.New(fmt.Sprintf("年肖玩法的Num不能为空"))
+		} else {
+			strlist := strings.Split(betinfo.Num, ",")
+			for _, itemstr := range strlist {
+				if itemstr == nianxiao { // 下注号码有年肖
+					newbet.Id = 5453
+					newbet.Money = betinfo.Money
+					newbet.Num = betinfo.Num
+					newbet.Expinfo = betinfo.Expinfo
+					return newbet, nil
+				}
+			}
+		}
+	case 3089: // 五肖不中普肖项
+		if betinfo.Num == "" {
+			return newbet, errors.New(fmt.Sprintf("年肖玩法的Num不能为空"))
+		} else {
+			strlist := strings.Split(betinfo.Num, ",")
+			for _, itemstr := range strlist {
+				if itemstr == nianxiao { // 下注号码有年肖
+					newbet.Id = 5454
+					newbet.Money = betinfo.Money
+					newbet.Num = betinfo.Num
+					newbet.Expinfo = betinfo.Expinfo
+					return newbet, nil
+				}
+			}
+		}
+	case 784: // 二连尾0尾项
+		if betinfo.Num == "" {
+			return newbet, errors.New(fmt.Sprintf("连尾玩法的Num不能为空"))
+		} else {
+			strlist := strings.Split(betinfo.Num, ",")
+			for _, itemstr := range strlist {
+				if itemstr == "0尾" { // 下注号码有0尾
+					return betinfo, nil
+				}
+			}
+
+			newbet.Id = 5455
+			newbet.Money = betinfo.Money
+			newbet.Num = betinfo.Num
+			newbet.Expinfo = betinfo.Expinfo
+			return newbet, nil
+		}
+	case 785: // 三连尾0尾项
+		if betinfo.Num == "" {
+			return newbet, errors.New(fmt.Sprintf("连尾玩法的Num不能为空"))
+		} else {
+			strlist := strings.Split(betinfo.Num, ",")
+			for _, itemstr := range strlist {
+				if itemstr == "0尾" { // 下注号码有0尾
+					return betinfo, nil
+				}
+			}
+
+			newbet.Id = 5456
+			newbet.Money = betinfo.Money
+			newbet.Num = betinfo.Num
+			newbet.Expinfo = betinfo.Expinfo
+			return newbet, nil
+		}
+	case 786: // 四连尾0尾项
+		if betinfo.Num == "" {
+			return newbet, errors.New(fmt.Sprintf("连尾玩法的Num不能为空"))
+		} else {
+			strlist := strings.Split(betinfo.Num, ",")
+			for _, itemstr := range strlist {
+				if itemstr == "0尾" { // 下注号码有0尾
+					return betinfo, nil
+				}
+			}
+
+			newbet.Id = 5457
+			newbet.Money = betinfo.Money
+			newbet.Num = betinfo.Num
+			newbet.Expinfo = betinfo.Expinfo
+			return newbet, nil
+		}
+	case 4022: // 五连尾0尾项
+		if betinfo.Num == "" {
+			return newbet, errors.New(fmt.Sprintf("连尾玩法的Num不能为空"))
+		} else {
+			strlist := strings.Split(betinfo.Num, ",")
+			for _, itemstr := range strlist {
+				if itemstr == "0尾" { // 下注号码有0尾
+					return betinfo, nil
+				}
+			}
+
+			newbet.Id = 5458
+			newbet.Money = betinfo.Money
+			newbet.Num = betinfo.Num
+			newbet.Expinfo = betinfo.Expinfo
+			return newbet, nil
+		}
+
+	default:
+		return betinfo, nil
+	}
+	return betinfo, nil
 }

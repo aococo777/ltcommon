@@ -134,6 +134,7 @@ type CRoomInfo struct {
 	Opentime       int64  // 提前开盘量
 	Closevalue     int64  // 系统基础封盘量
 	TemaClosevalue int64  //
+	IsChanglong    int64  //
 	Description    string // 游戏说明
 }
 
@@ -1765,6 +1766,7 @@ type HuoliangLog struct {
 	Roomid         int64
 	Pan            string
 	Itemid         int64
+	OpTime         int64
 	Transferamount int64   // 补货额度
 	Prehuoliang    float64 // 目前DB已收
 	Bendanhuoliang float64 // 本单基础占成
