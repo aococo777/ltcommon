@@ -961,6 +961,7 @@ type UserGameset struct {
 	SufMaxZhanchengNext float64 `json:"sufmaxzhanchengnext"` // 上级能给我的最高占成(下次维护值)
 	Pans                string  `json:"pans"`                // 开通盘口
 	BuhuoFlag           int64   `json:"buhuoflag"`           // 补货启用标识
+	IsJishiOrder        int64   `json:"isjiashiorder"`       // 加时盘下单标识
 }
 
 // 会员的玩法设置

@@ -4,9 +4,10 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"sync"
+
 	"github.com/aococo777/ltcommon/commonfunc"
 	"github.com/aococo777/ltcommon/commonstruct"
-	"sync"
 
 	"github.com/astaxie/beego"
 	"github.com/jinzhu/gorm"
@@ -47,22 +48,6 @@ func (this *UserTree) Init(db *gorm.DB) error {
 		beego.Error("GetCompanybaseS err", err)
 		return err
 	}
-	// for _, companybase := range companybaseS {
-	// 	var userbranch commonstruct.BranchUsers
-	// 	if err := this.mysql.Table(commonstruct.WY_user_branch).Select("uuid,saler_id,saler_list").
-	// 		Where("uuid = ?", companybase.Uuid).Find(&userbranch).Error; err != nil {
-	// 		beego.Error("getuserbranch err", companybase.Uuid, err)
-	// 		return err
-	// 	} else {
-	// 		var IDList []int64
-	// 		if err := json.Unmarshal(userbranch.SalerList, &IDList); err != nil {
-	// 			beego.Error(fmt.Sprintf("InitSalerIDList [%v] Unmarshal err %v", userbranch.Uuid, err))
-	// 			continue
-	// 		}
-	// 		this.SalerIDList[userbranch.Uuid] = IDList
-	// 	}
-	// }
-
 	beego.Error("initsalerlist finished")
 
 	var PreBranch []commonstruct.BranchUsers
@@ -71,13 +56,10 @@ func (this *UserTree) Init(db *gorm.DB) error {
 		beego.Error("getuserbranch err", err)
 		return err
 	}
+
+	iCount := 0
 	for _, v := range PreBranch {
 		if v.PreID > 0 {
-			// if salerlist, ok := this.SalerIDList[v.MasterID]; ok {
-			// for _, salerid := range salerlist {
-			// 	this.PreIDList[v.Uuid] = append(this.PreIDList[v.Uuid], salerid)
-			// }
-
 			var preidlist []int64
 			if err := json.Unmarshal(v.PreList, &preidlist); err != nil {
 				beego.Error("InitPreIDList [%v] Unmarshal err %v\n", v, err)
@@ -89,11 +71,11 @@ func (this *UserTree) Init(db *gorm.DB) error {
 			}
 			this.MasterID[v.Uuid] = v.MasterID
 			this.PreID[v.Uuid] = v.PreID
-
-			beego.Error(fmt.Sprintf("uuid:%v =>[%v] prelist => [%v]", v.Uuid, v.MasterID, this.PreIDList[v.Uuid]))
-			// }
+			iCount = iCount + 1
 		}
 	}
+
+	beego.Error(fmt.Sprintf("init prelist count ===> ", iCount))
 	return nil
 }
 
