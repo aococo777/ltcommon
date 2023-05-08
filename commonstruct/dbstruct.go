@@ -572,6 +572,7 @@ type Users struct {
 	Validamount     float64 `json:"validamount"`                                     // 有效金额
 	Paicai          float64 `json:"paicai"`                                          // 派彩金额
 	Tuishui         float64 `json:"tuishui"`                                         // 退水金额
+	GameKaiguan     int64   `json:"gamekaiguan"`                                     // 游戏设置开关
 	MoneyType       string  `json:"moneytype"`                                       // 资金类型
 	VipLevel        int64   `json:"viplevel"`                                        // 用户会员等级
 	WhiteIps        string  `gorm:"type:varchar(300)" json:"whiteips"`               // 白名单列表
