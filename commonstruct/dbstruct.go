@@ -963,7 +963,6 @@ type UserGameset struct {
 	Pans                string  `json:"pans"`                // 开通盘口
 	BuhuoFlag           int64   `json:"buhuoflag"`           // 补货启用标识
 	IsJiashiOrder       int64   `json:"isjiashiorder"`       // 加时盘下单标识
-	GameFlag            int64   `json:"gameflag"`            // 游戏状态
 }
 
 // 会员的玩法设置
