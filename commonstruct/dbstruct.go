@@ -726,8 +726,8 @@ type GufenLog struct {
 	RoomID        int64
 	RoomCN        string
 	Column        string
-	Yuanshizhi    string
-	Biangengzhi   string
+	Yuanshizhi    int64
+	Biangengzhi   int64
 	IP            string
 	IPPlace       string
 	ShengxiaoTime int64
