@@ -91,6 +91,7 @@ const (
 	WY_tmp_log_money             = "wy_tmp_log_money"             // 用户资金日志表
 	WY_tmp_log_port              = "wy_tmp_log_port"              // 盘口修改日志表
 	WY_tmp_log_userop            = "wy_tmp_log_userop"            // 用户操作日志表
+	WY_tmp_log_gufen             = "wy_tmp_log_gufen"             // 用户操作日志表
 	WY_tmp_log_promotion         = "wy_tmp_log_promotion"         // 活动领取记录
 	WY_tmp_log_warning           = "wy_tmp_log_warning"           // 活动领取记录
 	WY_tmp_log_gentou            = "wy_tmp_log_gentou"            // 跟投日志
@@ -707,6 +708,30 @@ type UserOpLog struct {
 	IPPlace      string
 	Url          string
 	Desc         string `gorm:"type:text"` // 新的盘口设置
+}
+
+// 股份日志
+type GufenLog struct {
+	ID            int64  `gorm:"primary_key;not null;AUTO_INCREMENT"`
+	Uuid          int64  `gorm:"not null"` // 用户ID
+	Account       string // 操作者账户
+	RoleType      string // 操作者账户
+	Nickname      string // 昵称
+	Realname      string // 真实姓名
+	DestUuid      int64  // 被操作者
+	DestAccount   string // 被操作者账户
+	DestNickname  string // 昵称
+	DestRealname  string // 真实姓名
+	OpTime        int64  // 修改时间
+	RoomID        int64
+	RoomCN        string
+	Column        string
+	Yuanshizhi    string
+	Biangengzhi   string
+	IP            string
+	IPPlace       string
+	ShengxiaoTime int64
+	Desc          string `gorm:"type:text"` // 新的盘口设置
 }
 
 type MoneyUpdateLog struct { // 资金变动日志
