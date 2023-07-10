@@ -2,13 +2,14 @@ package commonclass
 
 import (
 	"fmt"
-	"github.com/aococo777/ltcommon/commonfunc"
-	"github.com/aococo777/ltcommon/commonstruct"
 	"math"
 	"strconv"
 	"strings"
 	"sync"
 	"time"
+
+	"github.com/aococo777/ltcommon/commonfunc"
+	"github.com/aococo777/ltcommon/commonstruct"
 
 	"github.com/astaxie/beego"
 	"github.com/jinzhu/gorm"
@@ -21,26 +22,24 @@ type GameItemManager struct {
 	PortInfo_ID   map[string]int64                 // 盘口设置分类
 	PortID_Info   map[int64]commonstruct.PortClass // 盘口ID 的详细信息
 	GameENG_ItemS map[string][]int64               // 单个游戏下的所有玩法
-	// GameENG_Info  map[string]commonstruct.CRoomGame // 游戏名 匹配 游戏信息
-	// GameID_Info   map[int64]commonstruct.CRoomGame  // 游戏ID 获取 游戏信息
-	// RoomID_Info   map[int64]commonstruct.CRoomInfo  // 房间ID获取房间信息
-	// RoomName_Info map[string]commonstruct.CRoomInfo // 房间名字获取房间信息
-	Sebo          map[int64]string  // 色波信息
-	LianmaID      map[int64]int64   // 一中一连码
-	MultiLianmaID []int64           // 一中多连码
-	RiskItemID    map[int64][]int64 // 风险对打ID列表
+	Sebo          map[int64]string                 // 色波信息
+	LianmaID      map[int64]int64                  // 一中一连码
+	MultiLianmaID []int64                          // 一中多连码
+	RiskItemID    map[int64][]int64                // 风险对打ID列表
 
 	JszdGroupIDList map[string][]int64  // 即时注单分组 gametype_groupname => IDList
 	JszdGroupList   map[string][]string // 即时注单分组 gametype => groupList
 
+	platform string
 	mysql    *gorm.DB
 	itemLock sync.Mutex // 生肖锁
 }
 
-func (this *GameItemManager) Init(DB *gorm.DB) error {
+func (this *GameItemManager) Init(DB *gorm.DB, Platform string) error {
 	beego.Error("GameItemManager Init enter!")
 
 	this.mysql = DB
+	this.platform = Platform
 
 	// 初始化盘口设置分类
 	this.UpdatePortclass()
@@ -64,6 +63,7 @@ func (this *GameItemManager) GetAllGameitem() ([]commonstruct.CGameItem, error) 
 
 	var logcount commonstruct.CGameItem
 	if err := this.mysql.Table(commonstruct.WY_gm_config_item).Select("count(*) as id").
+		Where("lottery_dalei = ?", this.platform).
 		Find(&logcount).Error; err != nil {
 		beego.Error("GetAllGameitem count err", err)
 	}
@@ -73,6 +73,7 @@ func (this *GameItemManager) GetAllGameitem() ([]commonstruct.CGameItem, error) 
 	for i := 0; i < count; i++ {
 		var danciorders []commonstruct.CGameItem
 		if err := this.mysql.Table(commonstruct.WY_gm_config_item).
+			Where("lottery_dalei = ?", this.platform).
 			Limit(int(dancibishu)).Offset(i * int(dancibishu)).
 			Find(&danciorders).Error; err != nil {
 			return orders, err
@@ -172,7 +173,8 @@ func (this *GameItemManager) UpdatePortclass() {
 	this.PortID_Info = make(map[int64]commonstruct.PortClass)
 
 	var FenleiS []commonstruct.PortClass
-	if err := this.mysql.Table(commonstruct.WY_gm_config_portclass).Find(&FenleiS).Error; err != nil {
+	if err := this.mysql.Table(commonstruct.WY_gm_config_portclass).
+		Where("lottery_dalei = ?", this.platform).Find(&FenleiS).Error; err != nil {
 		beego.Error("Init Query WY_gm_config_portclass", err.Error())
 		return
 	}
@@ -186,7 +188,8 @@ func (this *GameItemManager) UpdatePortclass() {
 func (this *GameItemManager) UpdateSebo() {
 	this.Sebo = make(map[int64]string)
 	var FenleiS []commonstruct.BallInfo
-	if err := this.mysql.Table(commonstruct.WY_gm_config_ballinfo).Find(&FenleiS).Error; err != nil {
+	if err := this.mysql.Table(commonstruct.WY_gm_config_ballinfo).
+		Where("lottery_dalei = ?", this.platform).Find(&FenleiS).Error; err != nil {
 		beego.Error("Init Query WY_gm_config_ballinfo", err.Error())
 		return
 	}
@@ -209,7 +212,8 @@ func (this *GameItemManager) UpdateLianmaItem() {
 	this.RiskItemID = make(map[int64][]int64)
 
 	var FenleiS []commonstruct.CGameItem
-	if err := this.mysql.Table(commonstruct.WY_gm_config_item).Find(&FenleiS).Error; err != nil {
+	if err := this.mysql.Table(commonstruct.WY_gm_config_item).
+		Where("lottery_dalei = ?", this.platform).Find(&FenleiS).Error; err != nil {
 		beego.Error("UpdateGameItem err ", err)
 		return
 	}
