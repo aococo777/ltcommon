@@ -1205,8 +1205,13 @@ type LotdataUsertema struct {
 
 // 单期统计数据
 type UserItemstatistic struct {
-	Uuid                 int64   // 用户ID
-	Pan                  string  // 盘口
+	Uuid                 int64 // 用户ID
+	PreID                int64
+	MasterID             int64
+	RoleType             string
+	Pan                  string // 盘口
+	RoomEng              string
+	RoomCn               string
 	Expect               string  // 期号
 	PortID               int64   //
 	ItemID               int64   //
@@ -1806,4 +1811,38 @@ type RevokeLog struct { // 结算日志
 	Uuid      int64 `json:"uuid"`      // 撤单人
 	OpTime    int64 `json:"optime"`    // 撤单时间
 	StatsFlag int64 `json:"statsflag"` // 货量修改标识
+}
+
+// 单期统计数据
+type UserDaystatistic struct {
+	Uuid                 int64 // 用户ID
+	PreID                int64
+	MasterID             int64
+	RoleType             string
+	RoomEng              string
+	RoomCn               string
+	Settlenum            int64   // 结算单数
+	Settledamount        float64 // 结算金额
+	Validamount          float64 // 有效金额
+	Wager                float64 // 派彩金额
+	Shuiamount           float64 // 退水金额
+	Yingshouxiaxian      float64 // 应收下线
+	Shizhanhuoliang      float64 // 实占货量
+	Shizhanshuying       float64 // 实占输赢
+	Shizhanjieguo        float64 // 实占结果
+	Shizhantuishui       float64 // 实占退水
+	Shizhanpeicha        float64 // 实占赔差
+	ProfitWager          float64 // 赚取赔差
+	Porfittuishui        float64 // 赚取退水
+	Yingkuijieguo        float64 // 代理的盈亏结果
+	Shangjiaohuoliang    float64 // 上交货量
+	Shangjijiaoshou      float64 // 上级交收
+	Shouhuo              float64 // 收货金额
+	Shouhuoyingkui       float64 // 收货盈亏
+	Buchu                float64 // 补出金额
+	Buchuyingkui         float64 // 补出盈亏
+	Shoudongbuchu        float64 // 手动补出
+	Shoudongbuchuyingkui float64 // 手动补出盈亏
+	Shizhanbuhuo         float64 // 实占补货
+	Shizhanbuhuoyingkui  float64 // 实占补货盈亏
 }
