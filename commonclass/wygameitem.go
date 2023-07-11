@@ -188,8 +188,7 @@ func (this *GameItemManager) UpdatePortclass() {
 func (this *GameItemManager) UpdateSebo() {
 	this.Sebo = make(map[int64]string)
 	var FenleiS []commonstruct.BallInfo
-	if err := this.mysql.Table(commonstruct.WY_gm_config_ballinfo).
-		Where("lottery_dalei = ?", this.platform).Find(&FenleiS).Error; err != nil {
+	if err := this.mysql.Table(commonstruct.WY_gm_config_ballinfo).Find(&FenleiS).Error; err != nil {
 		beego.Error("Init Query WY_gm_config_ballinfo", err.Error())
 		return
 	}
