@@ -240,6 +240,7 @@ type CGameItem struct {
 	Ischanglong   int64  // 是否计入长龙列表标识 (0不计入 1 计入)
 	RiskGroupid   int64  // 风险分组ID
 	JszdGroupName string // 即时注单分组名
+	JszdPageGroup string // 即时注单分页名
 }
 
 // 房间游戏分类
