@@ -1851,9 +1851,9 @@ type UserDaystatistic struct {
 
 type ChatLog struct { // 结算日志
 	ID        int64  `gorm:"primary_key;not null;AUTO_INCREMENT"`
-	CompanyID int64  `json:"orderid"` //
-	RoomID    int64  `json:"uuid"`    //
-	RoomENG   int64  `json:"uuid"`    //
-	OpTime    int64  `json:"optime"`  //
-	Info      string `json:"info"`    //
+	CompanyID int64  `json:"companyid"` //
+	RoomID    int64  `json:"roomid"`    //
+	RoomENG   string `json:"roomeng"`   //
+	OpTime    int64  `json:"optime"`    //
+	Info      string `json:"info"`      //
 }
