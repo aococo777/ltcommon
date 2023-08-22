@@ -1847,3 +1847,12 @@ type UserDaystatistic struct {
 	Shizhanbuhuo         float64 // 实占补货
 	Shizhanbuhuoyingkui  float64 // 实占补货盈亏
 }
+
+type ChatLog struct { // 结算日志
+	ID        int64  `gorm:"primary_key;not null;AUTO_INCREMENT"`
+	CompanyID int64  `json:"orderid"` //
+	RoomID    int64  `json:"uuid"`    //
+	RoomENG   int64  `json:"uuid"`    //
+	OpTime    int64  `json:"optime"`  //
+	Info      string `json:"info"`    //
+}
