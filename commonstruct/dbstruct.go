@@ -112,6 +112,7 @@ const (
 	WY_tmp_log_huoliang          = "wy_tmp_log_huoliang"          // 货量记录
 	WY_DaohangUrl                = "wy_daohang_url"               // 导航key=>url
 	Daohang_key_url              = "daohang_key_url"              // 导航key=>url
+	Chat_log                     = "chat_log"                     // 聊天记录
 )
 
 // 彩种信息
