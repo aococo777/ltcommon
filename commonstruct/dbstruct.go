@@ -1852,8 +1852,10 @@ type UserDaystatistic struct {
 type ChatLog struct { // 结算日志
 	ID        int64  `gorm:"primary_key;not null;AUTO_INCREMENT"`
 	CompanyID int64  `json:"companyid"` //
+	Account   string `json:"account"`   //
 	RoomID    int64  `json:"roomid"`    //
 	RoomENG   string `json:"roomeng"`   //
+	Expect    string `json:"expect"`    //
 	OpTime    int64  `json:"optime"`    //
 	Info      string `json:"info"`      //
 }
