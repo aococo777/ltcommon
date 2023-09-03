@@ -175,33 +175,51 @@ type CompanyBase struct {
 	Changlongcount  int64 `json:"changlongcount"` // 长龙期数
 	LiankaiWarning  int64
 	UpdateXianhong  int64
-	MaxPaicai       int64  `json:"maxpaicai"`    // 最大派彩
-	QiantaiLogo     string `json:"qiantailogo"`  // 前台Logo
-	HoutaiLogo      string `json:"houtailogo"`   // 前台Ico
-	QiantaiIco      string `json:"qiantaiico"`   // 后台Logo
-	HoutaiIco       string `json:"houtaiico"`    // 后台Ico
-	QiantaiTitle    string `json:"qiantaititle"` // 前台title
-	HoutaiTitle     string `json:"houtaititle"`  // 后台title
-	PcLoginType     int64  `json:"pclogintype"`  // PC登录页
-	PcGuoduType     int64  `json:"pcguodutype"`  // PC过渡页
-	PcGameType      int64  `json:"pcgametype"`   // PC游戏
-	MbdLoginType    int64  `json:"mbdlogintype"` // MBD登录页
-	MbdGameType     int64  `json:"mbdgametype"`  // MBD游戏
-	AdmLoginType    int64  `json:"admlogintype"` // ADM登录页
-	AdmGameType     int64  `json:"admgametype"`  // ADM模板
-	SkinType        int64  `json:"skintype"`     // 皮肤类型
-	IsChatroom      int64  `json:"ischatroom"`   // 聊天室状态
-	PcShiwan        int64  `json:"pcshiwan"`     // 试玩开关 0隐藏/1显示/2关闭
-	Peishuiquan     int64  `json:"peishuiquan"`  // 赔水权
-	Zhudanyuming    string `json:"zhudanyuming"` // 注单外链域名
-	KfzYuming       string `json:"kfzyuming"`    // 开发组域名
-	Expcodeurl1     string `json:"expcodeurl1"`  // 外接开奖号码url
-	Expcodeurl2     string `json:"expcodeurl2"`  // 外接开奖号码url
-	Expcodeurl3     string `json:"expcodeurl3"`  // 外接开奖号码url
-	Expcodeurl4     string `json:"expcodeurl4"`  // 外接开奖号码url
-	Expcodeurl5     string `json:"expcodeurl5"`  // 外接开奖号码url
-	Expcodeurl6     string `json:"expcodeurl6"`  // 外接开奖号码url
-
+	MaxPaicai       int64  `json:"maxpaicai"`       // 最大派彩
+	QiantaiLogo     string `json:"qiantailogo"`     // 前台Logo
+	HoutaiLogo      string `json:"houtailogo"`      // 前台Ico
+	QiantaiIco      string `json:"qiantaiico"`      // 后台Logo
+	HoutaiIco       string `json:"houtaiico"`       // 后台Ico
+	QiantaiTitle    string `json:"qiantaititle"`    // 前台title
+	HoutaiTitle     string `json:"houtaititle"`     // 后台title
+	PcLoginType     int64  `json:"pclogintype"`     // PC登录页
+	PcGuoduType     int64  `json:"pcguodutype"`     // PC过渡页
+	PcGameType      int64  `json:"pcgametype"`      // PC游戏
+	MbdLoginType    int64  `json:"mbdlogintype"`    // MBD登录页
+	MbdGameType     int64  `json:"mbdgametype"`     // MBD游戏
+	AdmLoginType    int64  `json:"admlogintype"`    // ADM登录页
+	AdmGameType     int64  `json:"admgametype"`     // ADM模板
+	SkinType        int64  `json:"skintype"`        // 皮肤类型
+	IsChatroom      int64  `json:"ischatroom"`      // 聊天室状态
+	PcShiwan        int64  `json:"pcshiwan"`        // 试玩开关 0隐藏/1显示/2关闭
+	Peishuiquan     int64  `json:"peishuiquan"`     // 赔水权
+	Zhudanyuming    string `json:"zhudanyuming"`    // 注单外链域名
+	KfzYuming       string `json:"kfzyuming"`       // 开发组域名
+	Expcodeurl1     string `json:"expcodeurl1"`     // 外接开奖号码url
+	Expcodeurl2     string `json:"expcodeurl2"`     // 外接开奖号码url
+	Expcodeurl3     string `json:"expcodeurl3"`     // 外接开奖号码url
+	Expcodeurl4     string `json:"expcodeurl4"`     // 外接开奖号码url
+	Expcodeurl5     string `json:"expcodeurl5"`     // 外接开奖号码url
+	Expcodeurl6     string `json:"expcodeurl6"`     // 外接开奖号码url
+	Pc1             string `json:"pc1"`             //
+	Pc2             string `json:"pc2"`             //
+	Pc3             string `json:"pc3"`             //
+	Mbd1            string `json:"mbd1"`            //
+	Mbd2            string `json:"mbd2"`            //
+	Mbd3            string `json:"mbd3"`            //
+	Adm1            string `json:"adm1"`            //
+	Adm2            string `json:"adm2"`            //
+	Adm3            string `json:"adm3"`            //
+	PcCdn1          string `json:"pccdn1"`          //
+	PcCdn2          string `json:"pccdn2"`          //
+	PcCdn3          string `json:"pccdn3"`          //
+	MbdCdn1         string `json:"mbdcdn1"`         //
+	MbdCdn2         string `json:"mbdcdn2"`         //
+	MbdCdn3         string `json:"mbdcdn3"`         //
+	AdmCdn1         string `json:"admcdn1"`         //
+	AdmCdn2         string `json:"admcdn2"`         //
+	AdmCdn3         string `json:"admcdn3"`         //
+	ZhudanyumingCdn string `json:"zhudanyumingcdn"` // 注单外链域名
 }
 
 // 公告
